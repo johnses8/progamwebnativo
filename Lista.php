@@ -10,17 +10,17 @@ include_once 'zulu.php';?>
     <title>Document</title>
 </head>
 <body>
-    <h1>Lista</h1>
-        <table> 
-            <thead>
-                <tr>
+    <h1>Lista</h1> 
+    <table class="table table-borderless">
+            <thead >
+                <tr class="table-dark">
           <th scope="col">id</th>
           <th scope="col">Nombre</th>
           <th scope="col">fecha_nacimiento</th>
           <th scope="col">P.A.P.A</th>
           </tr>
         </thead>
-        <?php
+        <?php 
         # Conexion y Captura de la Conexion 
             $connection=conexion();
             $sql="SELECT * FROM estudiante";
@@ -30,8 +30,7 @@ include_once 'zulu.php';?>
                 while ($row=mysqli_fetch_assoc($query)){
                     $id=$row ['id']; $Nombre=$row['Nombre']; $fecha_nacimiento=$row['fecha_nacimiento']; $P_A_P_A=$row['P_A_P_A'];
 
-                }
-            }
+                
         ?>
         <tbody>
             <tr>
@@ -39,7 +38,13 @@ include_once 'zulu.php';?>
                 <td><?php echo  $Nombre?> </td>
                 <td><?php echo $fecha_nacimiento?> </td>
                 <td><?php echo $P_A_P_A?> </td>
-            </tr>
+            <td><a href="delete.php?id=<?php echo $id;?>" class="btn btn-danger">Eliminar</a></td>
+                <td><a href="update.php?id=<?php echo $id;?>" class="btn btn-primary">Actualizar</a></td>
+                </tr>
+                <?php $contador++;
+                }
+            }
+            ?>
         </tbody>
         </table>
     
